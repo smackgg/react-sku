@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Button, Card } from 'antd';
+import { Button, Card, Popconfirm } from 'antd';
 
 class SKUs extends React.Component {
   constructor(props) {
@@ -10,6 +10,9 @@ class SKUs extends React.Component {
     this.state = {
       selectedTemp: {}, // 存放被选中的attribute
       attributes: this.attributes,
+      price: '',  // 总价格
+      count: 0, // 总数量
+      submitalbe: false,
     };
     this.skuResult = this.initSKU();
   }
@@ -117,8 +120,8 @@ class SKUs extends React.Component {
   skuHandler() {
     const selectedTemp = this.state.selectedTemp || {};
     const attributes = this.state.attributes;
-    const _this = this;
-
+    const skuResult = this.skuResult;
+    var nextState = {};
     // 根据已选中的selectedTemp，生成字典查询selectedIds
     const selectedIds = Object.keys(selectedTemp).reduce((arr, m) => {
       if (selectedTemp[m]) {
@@ -146,10 +149,23 @@ class SKUs extends React.Component {
           }
           testAttrIds = testAttrIds.concat(a.id);
           testAttrIds.sort((value1, value2) => parseInt(value1, 10) - parseInt(value2, 10));
-          a.unselectable = _this.skuResult[testAttrIds.join(';')] ? false : true;
+          a.unselectable = skuResult[testAttrIds.join(';')] ? false : true;
         }
       });
     });
+    nextState.submitalbe = false;
+    if (skuResult[selectedIds.join(';')]) {
+      const prices = skuResult[selectedIds.join(';')].prices
+      nextState.price = `${Math.max.apply(Math, prices)}~${Math.min.apply(Math, prices)}`;
+      if (selectedIds.length === attributes.length) {
+        nextState.submitalbe = true;
+        nextState.price = skuResult[selectedIds.join(';')].prices[0];
+      }
+      nextState.count = skuResult[selectedIds.join(';')].count;
+    } else {
+      nextState.count = this.stocks.reduce((count, item) => count + item.count, 0);
+    }
+    Object.keys(nextState).length > 0 && this.setState(nextState);
   }
   clickHandler(item) {
     const attributes = this.state.attributes;
@@ -180,24 +196,44 @@ class SKUs extends React.Component {
     const attributes = this.state.attributes;
     return (
       <div className="skus">
-      {
-        attributes.map((attribute, index) =>
-          <div key={index}>
-          <Card title={attribute.title} style={{ width: 500 }}>
-            {attribute.childAttr.map(
-              (item, i) => {
-                const buttonType = item.selected ? 'primary' : 'ghost';
-                if (item.unselectable) {
-                  return <Button type={buttonType} disabled key={i}>{item.title}</Button>;
-                }
-                return <Button type={buttonType} onClick={ () => this.clickHandler(item) } key={i}>{item.title}</Button>;
+        {
+          attributes.map((attribute, index) =>
+            <Card title={attribute.title} key={index} style={{ width: 500 }}>
+              <div className="layout layout-align-space-around">
+                {attribute.childAttr.map(
+                  (item, i) => {
+                    const buttonType = item.selected ? 'primary' : 'ghost';
+                    if (item.unselectable) {
+                      return <Button type={buttonType} disabled key={i}>{item.title}</Button>;
+                    }
+                    return <Button type={buttonType} onClick={ () => this.clickHandler(item) } key={i}>{item.title}</Button>;
+                  }
+                )}
+              </div>
+            </Card>
+          )
+        }
+        <Card title="Result" style={{ width: 500 }}>
+        <div className="layout layout-align-space-around">
+        <p><span>价格：</span><span>{this.state.price}</span></p>
+        <p><span>库存：</span><span>{this.state.count}</span></p>
+          {
+            (() => {
+              if (!this.state.submitalbe) {
+                return <Button type="ghost" disabled>确认选择</Button>;
               }
-            )}
-          </Card>
-
-          </div>
-        )
-      }
+              const selectedTemp = this.state.selectedTemp;
+              const selectedText = Object.keys(selectedTemp).reduce((str, item) => `${str} ${selectedTemp[item].title}`, '');
+              const confirmText = `You choosed${selectedText}`+`;Count is ${this.state.count};Price is ${this.state.price};Are you sure submit`;
+              return (
+                <Popconfirm title={confirmText} okText="Yes" cancelText="No">
+                  <Button type="ghost" >确认选择</Button>
+                </Popconfirm>
+              );
+            })()
+          }
+        </div>
+        </Card>
       </div>
     );
   }
