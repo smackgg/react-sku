@@ -1,0 +1,11 @@
+#system files
+.DS_Store
+.idea/
+.tags*
+
+#library files
+node_modules
+npm-debug.log
+
+#compiled files
+dist/
