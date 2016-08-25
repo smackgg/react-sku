@@ -18,7 +18,7 @@ var config = {
     },
     {
       test: /\.scss$/,
-      loaders: ["style", "css?sourceMap", "postcss", "sass?sourceMap"],
+      loaders: ["style", "css?sourceMap", "sass?sourceMap"],
     },
     {
       test: /\.less$/,
