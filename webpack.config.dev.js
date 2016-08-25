@@ -7,7 +7,6 @@ var config = {
     'webpack/hot/only-dev-server',
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
     publicPath: "http://127.0.0.1:8080/dist/",
     filename: 'bundle.js'
   },
