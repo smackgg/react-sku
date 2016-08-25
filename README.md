@@ -1,8 +1,13 @@
 # react-SKUs
 react-SKUs
 <a href="http://winnerweb.github.io/react-SKUs" target="_blank">Here is demo</a>
-# npm run start
----
+# Demo & Examples
 
-## Then run http://localhost:8080
+Clone this repo then run:
+
+```javascript
+npm install
+npm start
+```
+Then open [`localhost:8000`](http://localhost:8000) in a browser.
 
