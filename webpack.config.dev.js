@@ -28,6 +28,9 @@ var config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ],
+  postcss: function () {
+    return [precss, autoprefixer];
+  }
 };
 
 module.exports = config;
