@@ -18,7 +18,7 @@ var config = {
     },
     {
       test: /\.scss$/,
-      loaders: ["style", "css?sourceMap", "sass?sourceMap"],
+      loaders: ["style", "css?sourceMap", "postcss", "sass?sourceMap"],
     },
     {
       test: /\.less$/,
@@ -28,6 +28,9 @@ var config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ],
+  postcss: function () {
+    return [precss, autoprefixer];
+  }
 };
 
 module.exports = config;
