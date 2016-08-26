@@ -1,8 +1,12 @@
-@import "../style/layout.scss";
-
 .skus {
   position: absolute;
   left: 50%;
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
+}
+
+.layout-align-space-around {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
 }

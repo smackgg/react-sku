@@ -17,6 +17,12 @@
           "error"
         ]
       }
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true
+      }
     ]
   }
 }
