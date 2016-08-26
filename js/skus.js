@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Button, Card, Popconfirm } from 'antd';
+import { Button, Card, message, Modal } from 'antd';
 
 class SKUs extends React.Component {
   constructor(props) {
@@ -195,6 +195,23 @@ class SKUs extends React.Component {
     this.skuHandler();
   }
 
+  submit(content) {
+    const confirmOptions = {
+      title: 'Are you sure submit?',
+      content,
+      onCancel() {
+        message.success('Cancel', 3);
+      },
+      onOk() {
+        message.success('Submit success', 3);
+      },
+      okText: 'OK',
+      cancelText: 'CANCEL',
+    };
+
+    Modal.confirm(confirmOptions);
+  }
+
   render() {
     const attributes = this.state.attributes;
     return (
@@ -223,15 +240,13 @@ class SKUs extends React.Component {
           {
             (() => {
               if (!this.state.submitalbe) {
-                return <Button type="ghost" disabled>确认选择</Button>;
+                return <Button type="ghost" disabled>Submit</Button>;
               }
               const selectedTemp = this.state.selectedTemp;
-              const selectedText = Object.keys(selectedTemp).reduce((str, item) => `${str} ${selectedTemp[item].title}`, '');
-              const confirmText = `You choosed${selectedText};Count is ${this.state.count};Price is ${this.state.price};Are you sure submit`;
+              const selectedText = Object.keys(selectedTemp).reduce((str, item) => `${str} ${item}-${selectedTemp[item].title}`, '');
+              const confirmText = `You choosed: ${selectedText};Stock on hand: ${this.state.count};Total Fee: ${this.state.price};`;
               return (
-                <Popconfirm title={confirmText} okText="Yes" cancelText="No">
-                  <Button type="ghost" >确认选择</Button>
-                </Popconfirm>
+                <Button type="ghost" onClick={() => this.submit(confirmText)}>Submit</Button>
               );
             })()
           }
