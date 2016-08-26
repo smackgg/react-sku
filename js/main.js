@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import attributes from '../testData/attributes';
 import stocks from '../testData/stocks';
 
+// style
 import '../style/style.scss';
 
 ReactDOM.render(<SKUs {...{ attributes, stocks }} />, document.getElementById('app'));

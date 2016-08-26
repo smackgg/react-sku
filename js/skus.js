@@ -214,7 +214,7 @@ class SKUs extends React.Component {
           )
         }
         <Card title="Result" style={{ width: 500 }}>
-        <div className="layout layout-align-space-around">
+        <div className="layout-align-space-around">
         <p><span>价格：</span><span>{this.state.price}</span></p>
         <p><span>库存：</span><span>{this.state.count}</span></p>
           {
@@ -224,7 +224,7 @@ class SKUs extends React.Component {
               }
               const selectedTemp = this.state.selectedTemp;
               const selectedText = Object.keys(selectedTemp).reduce((str, item) => `${str} ${selectedTemp[item].title}`, '');
-              const confirmText = `You choosed${selectedText}`+`;Count is ${this.state.count};Price is ${this.state.price};Are you sure submit`;
+              const confirmText = `You choosed${selectedText};Count is ${this.state.count};Price is ${this.state.price};Are you sure submit`;
               return (
                 <Popconfirm title={confirmText} okText="Yes" cancelText="No">
                   <Button type="ghost" >确认选择</Button>
