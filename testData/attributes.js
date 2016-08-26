@@ -1,27 +1,23 @@
-var attributes = {
-  "status": 200,
-  "info": [{
-    "title": "产地",
-    "id": 21,
+var attributes = [{
+    "title": "Place of production",
     "childAttr": [{
-      "title": "的可靠的扣扣多少事离开了",
+      "title": "China",
       "id": 121
     }, {
-      "title": "订单",
+      "title": "Korea",
       "id": 120
     }, {
-      "title": "印度尼西亚",
+      "title": "Indonesia",
       "id": 24
     }, {
-      "title": "越南",
+      "title": "Japan",
       "id": 23
     }, {
-      "title": "美国",
+      "title": "America",
       "id": 22
     }]
   }, {
-    "title": "联名",
-    "id": 18,
+    "title": "Other",
     "childAttr": [{
       "title": "陈奕迅",
       "id": 20
@@ -30,10 +26,9 @@ var attributes = {
       "id": 19
     }]
   }, {
-    "title": "尺码",
-    "id": 12,
+    "title": "Size",
     "childAttr": [{
-      "title": "大码",
+      "title": "Large",
       "id": 17
     }, {
       "title": "43.5",
@@ -49,24 +44,22 @@ var attributes = {
       "id": 13
     }]
   }, {
-    "title": "颜色",
-    "id": 6,
+    "title": "Color",
     "childAttr": [{
-      "title": "白",
+      "title": "White",
       "id": 11
     }, {
-      "title": "灰",
+      "title": "Gray",
       "id": 10
     }, {
-      "title": "蓝紫",
+      "title": "Blue",
       "id": 9
     }, {
-      "title": "黑红",
+      "title": "Red",
       "id": 8
     }, {
-      "title": "白蓝",
+      "title": "Yellow",
       "id": 7
     }]
   }]
-}
 export default attributes;
