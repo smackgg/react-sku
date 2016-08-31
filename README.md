@@ -9,7 +9,7 @@ Clone this repo then run:
 npm install
 npm start
 ```
-Then open [`localhost:8000`](http://localhost:8000) in a browser.
+Then open [`localhost:8080`](http://localhost:8080) in a browser.
 
 # If you want to use this react-sku, your data should like these:
 
