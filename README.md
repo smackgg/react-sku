@@ -1,4 +1,4 @@
-# react-SKUs
+# react-sku
 react-SKUs
 <a href="http://winnerweb.github.io/react-SKUs" target="_blank">Here is demo</a>
 # Demo & Examples
