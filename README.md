@@ -11,7 +11,7 @@ npm start
 ```
 Then open [`localhost:8080`](http://localhost:8080) in a browser.
 
-# If you want to use this react-sku, your data should like these:
+# If you want to use this react-SKUs, your data should like these:
 
 ### Attributes (商品属性)
 ```json
