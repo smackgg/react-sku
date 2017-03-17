@@ -8,5 +8,6 @@
 .layout-align-space-around {
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }

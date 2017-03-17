@@ -83,12 +83,21 @@ class SKUs extends React.Component {
         arr.push(m.childAttr.id);
         return arr;
       }, []);
+      total.sort((value1, value2) => parseInt(value1, 10) - parseInt(value2, 10));
       object[total.join(';')] = Object.assign({}, item);
       return object;
     }, {});
-
     const SKUResult = {};
-    const skuKeys = Object.keys(data).map((key) => key);
+
+    // const skuKeys = Object.keys(data).map((key) => key);
+    // 需要剔除count为 0 的库存
+    const skuKeys = Object.keys(data).reduce((arr, key) => {
+      if (data[key].count > 0) {
+        arr.push(key);
+      }
+      return arr;
+    }, []);
+
     const _this = this;
     skuKeys.forEach((skuKey) => {
       const sku = data[skuKey];

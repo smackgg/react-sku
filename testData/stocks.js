@@ -249,6 +249,6 @@ var stocks = [{
     }
   }],
   "price": 0.01,
-  "count": 19992,
+  "count": 0,
 }]
 export default stocks;
