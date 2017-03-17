@@ -83,6 +83,7 @@ class SKUs extends React.Component {
         arr.push(m.childAttr.id);
         return arr;
       }, []);
+      total.sort((value1, value2) => parseInt(value1, 10) - parseInt(value2, 10));
       object[total.join(';')] = Object.assign({}, item);
       return object;
     }, {});
